@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="Exp1.1.css" />
+</head>
+
+<body>
+<main class="container">
+    <section class="card">
+        <h1>Student Registration</h1>
+        <p class="subtitle">Fill the form carefully. All fields are required.</p>
+
+        <form class="form" novalidate>
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                        minlength="3"
+                        pattern="[A-Za-z ]+"
+                />
+                <small class="hint">Only alphabets and spaces (min 3 characters).</small>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@gmail.com"
+                        required
+                />
+                <small class="hint">Enter a valid email like abc@gmail.com</small>
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        placeholder="Enter age"
+                        required
+                        min="16"
+                        max="60"
+                />
+                <small class="hint">Age must be between 16 and 60.</small>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn">Register</button>
+        </form>
+
+        <p class="note">
+            ✅ HTML5 validation is applied using <b>required</b>, <b>pattern</b>, <b>min/max</b>, and <b>type=email</b>.
+        </p>
+    </section>
+</main>
+
+<script>
+    // Visual validation feedback
+    const form = document.querySelector(".form");
+    const inputs = document.querySelectorAll("input");
+
+    form.addEventListener("submit", (e) => {
+        if (!form.checkValidity()) {
+            e.preventDefault();
+        }
+        inputs.forEach((input) => {
+            input.classList.add("touched");
+        });
+    });
+
+    inputs.forEach((input) => {
+        input.addEventListener("input", () => {
+            input.classList.add("touched");
+        });
+    });
+</script>
+</body>
+</html>
